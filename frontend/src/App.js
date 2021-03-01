@@ -48,7 +48,7 @@ function App() {
   let dayjsDay = dayjs(date).locale("ru");
     useEffect(() => {
         const getGroups = async() => {
-            const {data} = await axios.get(`http://localhost:5000/api/groups`)
+            const {data} = await axios.get(`https://localhost:5000/api/groups`)
             return data.map((item) => {
                 return item.group;
             });
@@ -60,7 +60,7 @@ function App() {
 
   useEffect(() => {
       const getLessons = async (groupInput) => {
-          const { data } = await axios.get(`http://localhost:5000/api/lessons/${groupInput}`);
+          const { data } = await axios.get(`https://localhost:5000/api/lessons/${groupInput}`);
           return data;
       };
       if(allGroups) {
