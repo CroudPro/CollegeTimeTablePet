@@ -11,7 +11,7 @@
     "data:import": "node ./backend/seederScript.js",
     "grab": "node backend/data/LoadPdf.js",
     "normalize": "node backend/data/NormalizePdf.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "",
   "license": "ISC",
