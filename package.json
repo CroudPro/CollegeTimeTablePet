@@ -10,7 +10,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node ./backend/seederScript.js",
     "grab": "node backend/data/LoadPdf.js",
-    "normalize": "node backend/data/NormalizePdf.js"
+    "normalize": "node backend/data/NormalizePdf.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
