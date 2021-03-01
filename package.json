@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "start": "npm start --prefix frontend",
+    "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node ./backend/seederScript.js",
     "grab": "node backend/data/LoadPdf.js",
