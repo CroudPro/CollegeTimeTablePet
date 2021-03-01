@@ -1,0 +1,73 @@
+li {
+  list-style: none;
+}
+.wrapper {
+
+  margin: 0 auto;
+  max-width:1100px;
+}
+header {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  border-bottom: 2px solid darken(#f1f1f1,5%);
+}
+
+.content {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .date-row {
+      display: flex;
+      margin-left:35px;
+      li {
+        display: flex;
+        flex-direction: column;
+        margin-left:12px;
+        align-items: center;
+        padding: 1px 10px;
+
+        &:hover {
+          padding: 0px 9px;
+          border:1px solid darken(#e4e4e4,10%);
+          background-color: darken(#e4e4e4,5%);
+          cursor:pointer;
+          border-radius: 5px;
+        }
+
+      }
+      .date__selected {
+        padding: 0px 9px;
+        border-radius: 5px;
+        border:1px solid #ba68c8;
+      }
+
+    }
+    .select-group {
+      margin-right: 15px;
+      select {
+        padding:5px;
+        border: 1px solid #e4e4e4;
+        background-color: lighten(#e4e4e4,2%);
+        border-radius: 5px;
+        &:hover {
+          border: 1px solid darken(#e4e4e4,10%);
+          background-color: darken(#e4e4e4,5%);
+          border-radius: 5px;
+        }
+        &:focus {
+          outline:0;
+        }
+      }
+
+    }
+  }
+  .lessons {
+    width:50%;
+  }
+
+
+}
