@@ -13,6 +13,7 @@ const getAllLessons = async (req, res) => {
 const getLessonByGroup = async (req, res) => {
     try {
         const lesson = await Lessons.find({group:req.params.group});
+
         res.json(lesson);
     } catch (e) {
         console.error(e);

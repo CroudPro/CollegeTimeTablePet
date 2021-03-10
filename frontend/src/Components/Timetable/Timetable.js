@@ -13,7 +13,7 @@ import Paper from "@material-ui/core/Paper";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   paper: {
     padding: "6px 16px",
     marginLeft: "14px",
@@ -30,15 +30,16 @@ const isToday = (date, propDate) => {
     date.getFullYear() === propDate.getFullYear()
   );
 };
-const isLessonNow = (times) => {
+const isLessonNow = (times,propDate) => {
   const today = new Date();
-  let startDate = new Date();
+  let startDate = new Date(propDate);
   startDate.setHours(times.from.split(":")[0]);
   startDate.setMinutes(times.from.split(":")[1]);
 
-  let endDate = new Date();
+  let endDate = new Date(propDate);
   endDate.setHours(times.to.split(":")[0]);
   endDate.setMinutes(times.to.split(":")[1]);
+
   return startDate < today && endDate > today;
 };
 const lessonsTimes = [
@@ -52,7 +53,7 @@ const NormalizeLessons = (arr) => {
     console.log(arr);
   for (let i = 0; i < lessonsTimes.length; i++) {
     if (!arr.find((item) => item.time === i)) {
-      arr.splice(i, 0, { type: "spacer", time: i, _id: Math.random() });
+      arr.splice(i, 0, { type: "spacer", time: i, _id: Math.random(),date:new Date().toISOString() });
     }
   }
 
@@ -87,7 +88,7 @@ function Timetable({ lessons, date }) {
               <TimelineSeparator>
                 <TimelineDot
                   color={
-                    isLessonNow(lessonsTimes[lesson.time])
+                    isLessonNow(lessonsTimes[lesson.time],lesson.date)
                       ? "primary"
                       : "inherit"
                   }
@@ -134,7 +135,7 @@ function Timetable({ lessons, date }) {
               <TimelineSeparator>
                 <TimelineDot
                   color={
-                    isLessonNow(lessonsTimes[lesson.time])
+                    isLessonNow(lessonsTimes[lesson.time],lesson.date)
                       ? "primary"
                       : "inherit"
                   }

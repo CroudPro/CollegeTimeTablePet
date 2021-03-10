@@ -3,13 +3,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {createMuiTheme} from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import Timetable from "./Components/Timetable/Timetable";
-import DateRow from "./Components/Date/Date";
-import SelectGroup from "./Components/SelectGroup/SelectGroup";
+// DayJS
 import dayjs from "dayjs";
 import dayOfYear   from 'dayjs/plugin/dayOfYear';
 import isToday  from 'dayjs/plugin/isToday';
 import "dayjs/locale/ru";
+// Components
+import Timetable from "./Components/Timetable/Timetable";
+import DateRow from "./Components/Date/Date";
+import SelectGroup from "./Components/SelectGroup/SelectGroup";
+
 dayjs.extend(dayOfYear)
 dayjs.extend(isToday)
 const theme = createMuiTheme({
@@ -48,7 +51,7 @@ function App() {
   let dayjsDay = dayjs(date).locale("ru");
     useEffect(() => {
         const getGroups = async() => {
-            const {data} = await axios.get(`https://localhost:5000/api/groups`)
+            const {data} = await axios.get(`http://localhost:5000/api/groups`)
             return data.map((item) => {
                 return item.group;
             });
@@ -60,7 +63,7 @@ function App() {
 
   useEffect(() => {
       const getLessons = async (groupInput) => {
-          const { data } = await axios.get(`https://localhost:5000/api/lessons/${groupInput}`);
+          const { data } = await axios.get(`http://localhost:5000/api/lessons/${groupInput}`);
           return data;
       };
       if(allGroups) {
