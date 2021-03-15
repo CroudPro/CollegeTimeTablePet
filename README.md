@@ -10,7 +10,7 @@
 ### Installation
 * Clone this repo
 * ```npm i``` to install all backend dep
-* ```cd fronted```
+* ```cd frontend```
 * ```npm i``` to install all frontend dep  
 * ```cd ..``` 
 * ```npm dev``` to start dev server
