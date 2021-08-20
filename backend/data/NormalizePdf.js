@@ -128,18 +128,27 @@ const NormalizeGroupsPdf = async (dataBuffer) => {
                 }
             }
 
-            if(counter === 0)totalResult = [...resultsForGroup];
-            else totalResult = [...totalResult, ...resultsForGroup];
-            counter++;
+          if (counter === 0) {
+            totalResult = [...resultsForGroup];
+          } else {
+            totalResult = [...totalResult, ...resultsForGroup];
+          }
+          counter++;
         });
 
     });
-    let uniqueGroups;
-    uniqueGroups = totalResult.filter((v,i,a)=>a.findIndex(t=>(t.group === v.group))===i).map((item) => {
-        return {group:item.group}
+  let uniqueGroups;
+  uniqueGroups = totalResult.filter(
+    (v, i, a) => a.findIndex(t => (t.group === v.group)) === i)
+    .map((item) => {
+      return {group: item.group};
     });
-    return {lessons:totalResult,groups:uniqueGroups};
+  return {
+    lessons: totalResult,
+    groups: uniqueGroups,
+  };
 }
-let dataBuffer = fs.readFileSync("./backend/data/raw/data.pdf");
+let dataBuffer = fs.readFileSync('./backend/data/raw/data.pdf');
 NormalizeGroupsPdf(dataBuffer)
-module.exports = ()=> (NormalizeGroupsPdf(dataBuffer));
+  .then((resp) => console.log(resp));
+module.exports = () => (NormalizeGroupsPdf(dataBuffer));

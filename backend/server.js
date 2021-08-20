@@ -1,28 +1,30 @@
-require("dotenv").config();
-const express = require("express");
-const path = require('path')
-const connectDB = require("./config/db.js");
-const lessonsRoutes = require('./routes/lessonsRoutes')
-const groupsRoutes = require('./routes/groupRoutes')
+require('dotenv')
+  .config();
+const express = require('express');
+const path = require('path');
+const connectDB = require('./config/db.js');
+const lessonsRoutes = require('./routes/lessonsRoutes');
+const groupsRoutes = require('./routes/groupRoutes');
+const cors = require('cors');
 connectDB();
 
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
+app.use('/api/lessons', lessonsRoutes);
+app.use('/api/groups', groupsRoutes);
 
-app.use('/api/lessons',lessonsRoutes);
-app.use('/api/groups',groupsRoutes);
-
-if(process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname,'../frontend/build')));
-    app.get('*',(req,res) => {
-        res.sendFile(path.join(__dirname,'../frontend','build','index.html'))
-    })
-}else {
-    app.get("/",(req,res) => {
-        res.send("Api Running");
-    })
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'build', 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('Api Running');
+  });
 }
 
 const PORT = process.env.PORT || 5000;
